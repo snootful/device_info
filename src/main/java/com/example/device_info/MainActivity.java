@@ -27,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
         list.add(new String[]{"The user-visible SDK version of the framework", Integer.toString(Build.VERSION.SDK_INT)});
         list.add(new String[]{"The name of the underlying board", Build.BOARD});
         list.add(new String[]{"A build ID string meant for displaying to the user", Build.DISPLAY});
-        list.add(new String[]{""});
+        list.add(new String[]{"BOOTLOADER", Build.BOOTLOADER});
+        
 
 
         ArrayAdapter<String[]> arrayAdapter = new ArrayAdapter<String []>(this,
