@@ -15,6 +15,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SystemActivity" >
+        </activity>
+        <activity android:name=".BatteryActivity" >
+        </activity>
     </application>
 
 </manifest>
