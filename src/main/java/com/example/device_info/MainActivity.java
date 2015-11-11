@@ -30,4 +30,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SystemActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public void onUserLeaveHint() {
+        finish();
+    }
 }

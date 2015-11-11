@@ -119,4 +119,9 @@ public class BatteryActivity extends AppCompatActivity {
         return "No data";
 
     }
+
+    @Override
+    public void onUserLeaveHint() {
+        finish();
+    }
 }

@@ -53,4 +53,9 @@ public class SystemActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(arrayAdapter);
     }
+
+    @Override
+    public void onUserLeaveHint () {
+        finish();
+    }
 }
