@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.device_info" >
 
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,6 +20,8 @@
         <activity android:name=".SystemActivity" >
         </activity>
         <activity android:name=".BatteryActivity" >
+        </activity>
+        <activity android:name=".PhoneActivity" >
         </activity>
     </application>
 

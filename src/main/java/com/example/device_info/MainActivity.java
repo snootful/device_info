@@ -26,6 +26,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void aboutPhone(View view) {
+        Intent intent = new Intent(this, PhoneActivity.class);
+        startActivity(intent);
+    }
+
     public void aboutSystem(View view) {
         Intent intent = new Intent(this, SystemActivity.class);
         startActivity(intent);
