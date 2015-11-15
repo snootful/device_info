@@ -64,7 +64,7 @@ public class BatteryActivity extends AppCompatActivity {
         battery.add(new String[]{"Temperature", temperature+"°C"});
         battery.add(new String[]{"Voltage", voltage+"Volts"});
         battery.add(new String[]{"Capacity", level+"/"+scale});
-        battery.add(new String[]{"Status", status2+"/"});
+        battery.add(new String[]{"Status", Integer.toString(status2)});
         battery.add(new String[]{"Health", health});
         battery.add(new String[]{"Total Battery Capacity", getBatteryCapacity()});
 
