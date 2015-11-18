@@ -24,7 +24,7 @@ public class BatteryActivity extends AppCompatActivity {
         IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         Intent batteryStatus =registerReceiver(null, filter);
 
-        String status = null;
+        String status;
         int extraStatus = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
         switch (extraStatus) {
             case BatteryManager.BATTERY_STATUS_UNKNOWN:
@@ -51,7 +51,7 @@ public class BatteryActivity extends AppCompatActivity {
         float voltage = ((float) extraVoltage) /1000;
         int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
         int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, 0);
-        String health = null;
+        String health;
         int extraHealth = batteryStatus.getIntExtra(BatteryManager.EXTRA_HEALTH, -1);
         switch (extraHealth) {
             case BatteryManager.BATTERY_HEALTH_UNKNOWN:
