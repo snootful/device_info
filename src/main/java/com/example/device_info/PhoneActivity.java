@@ -1,29 +1,20 @@
 package com.example.device_info;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class PhoneActivity extends AppCompatActivity
         implements ActivityCompat.OnRequestPermissionsResultCallback{
-
-    private final int STATS = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +48,6 @@ public class PhoneActivity extends AppCompatActivity
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(arrayAdapter);
     }
-
 
     @Override
     public void onUserLeaveHint() {
