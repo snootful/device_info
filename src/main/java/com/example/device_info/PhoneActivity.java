@@ -36,11 +36,9 @@ public class PhoneActivity extends AppCompatActivity
                 View view = super.getView(position, convertView, parent);
                 TextView text1 = (TextView) view.findViewById(android.R.id.text1);
                 TextView text2 = (TextView) view.findViewById(android.R.id.text2);
-
                 String[] entry = list.get(position);
                 text1.setText(entry[0]);
                 text2.setText(entry[1]);
-
                 return view;
             }
         };

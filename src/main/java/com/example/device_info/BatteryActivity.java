@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,19 +24,19 @@ public class BatteryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battery);
 
-        IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        Intent batteryStatus = registerReceiver(null, ifilter);
+        IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        Intent batteryStatus = registerReceiver(null, filter);
         int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
-        int status2 = BatteryManager.BATTERY_STATUS_FULL;
-        int status3 = batteryStatus.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0);
-        float temperature = ((float) status3) / 10;
-        int status4 = batteryStatus.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0);
-        float voltage = ((float) status4) /1000;
+        int status_full = BatteryManager.BATTERY_STATUS_FULL;
+        int extraTemperature = batteryStatus.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0);
+        float temperature = ((float) extraTemperature) / 10;
+        int extraVoltage = batteryStatus.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0);
+        float voltage = ((float) extraVoltage) /1000;
         int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
         int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, 0);
-        int status5 = batteryStatus.getIntExtra(BatteryManager.EXTRA_HEALTH, 1);
-        String health = "Unknown";
-        switch (status5) {
+        int extraHealth = batteryStatus.getIntExtra(BatteryManager.EXTRA_HEALTH, 1);
+        String health = "";
+        switch (extraHealth) {
             case BatteryManager.BATTERY_HEALTH_UNKNOWN:
                 health = "Unknown";
                 break;
@@ -64,7 +65,7 @@ public class BatteryActivity extends AppCompatActivity {
         battery.add(new String[]{"Temperature", temperature+"°C"});
         battery.add(new String[]{"Voltage", voltage+"Volts"});
         battery.add(new String[]{"Capacity", level+"/"+scale});
-        battery.add(new String[]{"Status", Integer.toString(status2)});
+        battery.add(new String[]{"Status", Integer.toString(status_full)});
         battery.add(new String[]{"Health", health});
         battery.add(new String[]{"Total Battery Capacity", getBatteryCapacity()});
 
@@ -79,11 +80,9 @@ public class BatteryActivity extends AppCompatActivity {
                 View view = super.getView(position, convertView, parent);
                 TextView text1 = (TextView) view.findViewById(android.R.id.text1);
                 TextView text2 = (TextView) view.findViewById(android.R.id.text2);
-
                 String[] entry = battery.get(position);
                 text1.setText(entry[0]);
                 text2.setText(entry[1]);
-
                 return view;
             }
         };

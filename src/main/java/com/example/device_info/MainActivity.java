@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
                         PERMISSION_REQUEST_READ_PHONE);
             } else {
                 Intent intent = new Intent(this, PhoneActivity.class);
-                startActivity(intent);            }
+                startActivity(intent);
+            }
         } else {
             Intent intent = new Intent(this, PhoneActivity.class);
             startActivity(intent);
