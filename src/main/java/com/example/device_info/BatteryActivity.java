@@ -4,16 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -25,17 +22,37 @@ public class BatteryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_battery);
 
         IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        Intent batteryStatus = registerReceiver(null, filter);
-        int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
-        int status_full = BatteryManager.BATTERY_STATUS_FULL;
+        Intent batteryStatus =registerReceiver(null, filter);
+
+        String status = null;
+        int extraStatus = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+        switch (extraStatus) {
+            case BatteryManager.BATTERY_STATUS_UNKNOWN:
+                status = "Unknown";
+                break;
+            case BatteryManager.BATTERY_STATUS_CHARGING:
+                status = "Charging";
+                break;
+            case BatteryManager.BATTERY_STATUS_DISCHARGING:
+                status = "Discharging";
+                break;
+            case BatteryManager.BATTERY_STATUS_NOT_CHARGING:
+                status = "Not Charging";
+                break;
+            case BatteryManager.BATTERY_STATUS_FULL:
+                status = "Full";
+                break;
+            default:
+                status = "Unknown";
+        }
         int extraTemperature = batteryStatus.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0);
         float temperature = ((float) extraTemperature) / 10;
         int extraVoltage = batteryStatus.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0);
         float voltage = ((float) extraVoltage) /1000;
         int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
         int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, 0);
-        int extraHealth = batteryStatus.getIntExtra(BatteryManager.EXTRA_HEALTH, 1);
-        String health = "";
+        String health = null;
+        int extraHealth = batteryStatus.getIntExtra(BatteryManager.EXTRA_HEALTH, -1);
         switch (extraHealth) {
             case BatteryManager.BATTERY_HEALTH_UNKNOWN:
                 health = "Unknown";
@@ -58,17 +75,18 @@ public class BatteryActivity extends AppCompatActivity {
             case BatteryManager.BATTERY_HEALTH_COLD:
                 health = "Cold";
                 break;
-        }
+            default:
+                health = "Unknown";
 
+        }
 
         final ArrayList<String[]> battery = new ArrayList<>();
         battery.add(new String[]{"Temperature", temperature+"°C"});
         battery.add(new String[]{"Voltage", voltage+"Volts"});
         battery.add(new String[]{"Capacity", level+"/"+scale});
-        battery.add(new String[]{"Status", Integer.toString(status_full)});
+        battery.add(new String[]{"Status", status});
         battery.add(new String[]{"Health", health});
         battery.add(new String[]{"Total Battery Capacity", getBatteryCapacity()});
-
 
         ArrayAdapter<String[]> arrayAdapter = new ArrayAdapter<String []>(this,
                 android.R.layout.simple_list_item_2,
