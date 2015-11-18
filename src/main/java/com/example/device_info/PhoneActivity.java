@@ -2,11 +2,11 @@ package com.example.device_info;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
@@ -20,30 +20,20 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class PhoneActivity extends AppCompatActivity {
+public class PhoneActivity extends AppCompatActivity
+        implements ActivityCompat.OnRequestPermissionsResultCallback{
 
-    private String imei = "";
     private final int STATS = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            int checkReadPhonePermission = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
-            if (checkReadPhonePermission != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(PhoneActivity.this, new String[]{Manifest.permission.READ_PHONE_STATE}, STATS);
-            } else {
-                imei = getIMEI();
-            }
-       } else {
-            imei = getIMEI();
-       }
-
-
+        TelephonyManager telephonyManager = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+        String IMEI = telephonyManager.getDeviceId();
         final ArrayList<String[]> list = new ArrayList<>();
-        list.add(new String[]{"IMEI", imei});
+        list.add(new String[]{"IMEI", IMEI});
 
         ArrayAdapter<String[]> arrayAdapter = new ArrayAdapter<String []>(this,
                 android.R.layout.simple_list_item_2,
@@ -68,29 +58,9 @@ public class PhoneActivity extends AppCompatActivity {
         listView.setAdapter(arrayAdapter);
     }
 
-    public String getIMEI() {
-        TelephonyManager telephonyManager = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
-        return imei = telephonyManager.getDeviceId();
-    }
-
 
     @Override
     public void onUserLeaveHint() {
         finish();
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,@NonNull String[] permissions,@NonNull int[] grantResults) {
-        switch (requestCode) {
-            case STATS:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                } else {
-                    Toast.makeText(PhoneActivity.this, "READ_PHONE Denied", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            default:
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
     }
 }
