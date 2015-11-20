@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-
     public void aboutBattery(View view) {
         Intent intent = new Intent(this, BatteryActivity.class);
         startActivity(intent);
