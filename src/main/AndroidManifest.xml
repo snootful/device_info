@@ -17,11 +17,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SystemActivity" >
+        <activity android:name=".SystemActivity" android:parentActivityName=".MainActivity">
         </activity>
-        <activity android:name=".BatteryActivity" >
+        <activity android:name=".BatteryActivity" android:parentActivityName=".MainActivity">
         </activity>
-        <activity android:name=".PhoneActivity" >
+        <activity android:name=".PhoneActivity" android:parentActivityName=".MainActivity">
         </activity>
     </application>
 
