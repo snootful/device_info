@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -45,6 +46,22 @@ public class BatteryActivity extends AppCompatActivity {
             default:
                 status = "Unknown";
         }
+
+        String plugged = "";
+        int extraPlugged = batteryStatus.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
+        switch (extraPlugged) {
+            case BatteryManager.BATTERY_PLUGGED_AC:
+                plugged = "AC";
+                break;
+            case BatteryManager.BATTERY_PLUGGED_USB:
+                plugged = "USB";
+                break;
+            case BatteryManager.BATTERY_PLUGGED_WIRELESS:
+                plugged = "Wireless";
+                break;
+        }
+
+        String technology = batteryStatus.getStringExtra(BatteryManager.EXTRA_TECHNOLOGY);
         int extraTemperature = batteryStatus.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0);
         float temperature = ((float) extraTemperature) / 10;
         int extraVoltage = batteryStatus.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0);
@@ -86,6 +103,8 @@ public class BatteryActivity extends AppCompatActivity {
         battery.add(new String[]{"Capacity", level+"/"+scale});
         battery.add(new String[]{"Status", status});
         battery.add(new String[]{"Health", health});
+        battery.add(new String[]{"Technology", technology});
+        battery.add(new String[]{"Plugged", plugged});
         battery.add(new String[]{"Total Battery Capacity", getBatteryCapacity()});
 
         ArrayAdapter<String[]> arrayAdapter = new ArrayAdapter<String []>(this,
