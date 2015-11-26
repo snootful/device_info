@@ -98,14 +98,14 @@ public class BatteryActivity extends AppCompatActivity {
         }
 
         final ArrayList<String[]> battery = new ArrayList<>();
-        battery.add(new String[]{"Temperature", temperature+"°C"});
-        battery.add(new String[]{"Voltage", voltage+"Volts"});
+        battery.add(new String[]{"Health", health});
+        battery.add(new String[]{"Total Battery Capacity", getBatteryCapacity()});
         battery.add(new String[]{"Capacity", level+"/"+scale});
         battery.add(new String[]{"Status", status});
-        battery.add(new String[]{"Health", health});
-        battery.add(new String[]{"Technology", technology});
         battery.add(new String[]{"Plugged", plugged});
-        battery.add(new String[]{"Total Battery Capacity", getBatteryCapacity()});
+        battery.add(new String[]{"Temperature", temperature+"°C"});
+        battery.add(new String[]{"Voltage", voltage+"Volts"});
+        battery.add(new String[]{"Technology", technology});
 
         ArrayAdapter<String[]> arrayAdapter = new ArrayAdapter<String []>(this,
                 android.R.layout.simple_list_item_2,
