@@ -68,6 +68,7 @@ public class BatteryActivity extends AppCompatActivity {
         float voltage = ((float) extraVoltage) /1000;
         int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
         int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, 0);
+
         String health;
         int extraHealth = batteryStatus.getIntExtra(BatteryManager.EXTRA_HEALTH, -1);
         switch (extraHealth) {
