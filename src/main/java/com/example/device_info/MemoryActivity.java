@@ -24,7 +24,7 @@ public class MemoryActivity extends AppCompatActivity {
 
         final ArrayList<String[]> memory = new ArrayList<>();
         memory.add(new String[]{"The available memory", (info.availMem >> 10)+"k"});
-        memory.add(new String[]{"Low memory situation", Boolean.toString(info.lowMemory)});
+        memory.add(new String[]{"Low memory situation", (info.lowMemory)?"Yes":"No"});
         memory.add(new String[]{"The threshold of availMem at which we consider memory to be low", Long.toString(info.threshold)});
 
         ArrayAdapter<String[]> arrayAdapter = new ArrayAdapter<String []>(this,
