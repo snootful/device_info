@@ -19,15 +19,19 @@
         </activity>
         <activity
             android:name=".SystemActivity"
-            android:parentActivityName=".MainActivity"></activity>
+            android:label="@string/title_system"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".BatteryActivity"
-            android:parentActivityName=".MainActivity"></activity>
+            android:label="@string/title_battery"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".PhoneActivity"
-            android:parentActivityName=".MainActivity"></activity>
+            android:label="@string/title_phone"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MemoryActivity"
-            android:parentActivityName=".MainActivity"></activity>
+            android:label="@string/title_memory"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>
