@@ -27,13 +27,13 @@ public class SystemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_system);
 
         final ArrayList<String[]> list = new ArrayList<>();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             list.add(new String[]{"The kernel version ", getFormattedKernelVersion()});
         }
         list.add(new String[]{"A build ID string meant for displaying to the user", Build.DISPLAY});
         list.add(new String[]{"CODENAME", Build.VERSION.CODENAME});
         list.add(new String[]{"RELEASE", Build.VERSION.RELEASE});
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             list.add(new String[]{"SECURITY_PATCH", Build.VERSION.SECURITY_PATCH});
         }
         list.add(new String[]{"The user-visible SDK version of the framework", Integer.toString(Build.VERSION.SDK_INT)});
