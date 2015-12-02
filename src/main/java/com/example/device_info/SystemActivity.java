@@ -27,18 +27,20 @@ public class SystemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_system);
 
         final ArrayList<String[]> list = new ArrayList<>();
+        list.add(new String[]{"Product", Build.PRODUCT});
+
+        list.add(new String[]{"Android version", Build.VERSION.CODENAME + "-" + Build.VERSION.RELEASE});
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            list.add(new String[]{"The kernel version ", getFormattedKernelVersion()});
+            list.add(new String[]{"Android security patch", Build.VERSION.SECURITY_PATCH});
         }
-        list.add(new String[]{"A build ID string meant for displaying to the user", Build.DISPLAY});
-        list.add(new String[]{"CODENAME", Build.VERSION.CODENAME});
-        list.add(new String[]{"RELEASE", Build.VERSION.RELEASE});
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            list.add(new String[]{"SECURITY_PATCH", Build.VERSION.SECURITY_PATCH});
-        }
-        list.add(new String[]{"The user-visible SDK version of the framework", Integer.toString(Build.VERSION.SDK_INT)});
-        list.add(new String[]{"The name of the underlying board", Build.BOARD});
-        list.add(new String[]{"BOOTLOADER", Build.BOOTLOADER});
+        list.add(new String[]{"Android SDK version", Integer.toString(Build.VERSION.SDK_INT)});
+
+        list.add(new String[]{"Model", Build.MODEL});
+        list.add(new String[]{"Kernel version ", getFormattedKernelVersion()});
+        list.add(new String[]{"Build ID", Build.DISPLAY});
+        list.add(new String[]{"Manufacturer", Build.MANUFACTURER});
+        list.add(new String[]{"Underlying board", Build.BOARD});
+        list.add(new String[]{"Bootloader version", Build.BOOTLOADER});
 
         ArrayAdapter<String[]> arrayAdapter = new ArrayAdapter<String []>(this,
                 android.R.layout.simple_list_item_2,
