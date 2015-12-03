@@ -39,6 +39,7 @@ public class SystemActivity extends AppCompatActivity {
         list.add(new String[]{"Kernel version ", getFormattedKernelVersion()});
         list.add(new String[]{"Build ID", Build.DISPLAY});
         list.add(new String[]{"Manufacturer", Build.MANUFACTURER});
+        list.add(new String[]{"Serial number", Build.SERIAL});
         list.add(new String[]{"Underlying board", Build.BOARD});
         list.add(new String[]{"Bootloader version", Build.BOOTLOADER});
 

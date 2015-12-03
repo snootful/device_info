@@ -1,6 +1,7 @@
 package com.example.device_info;
 
 import android.app.ActivityManager;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,9 +24,13 @@ public class MemoryActivity extends AppCompatActivity {
         activityManager.getMemoryInfo(info);
 
         final ArrayList<String[]> memory = new ArrayList<>();
-        memory.add(new String[]{"The available memory", (info.availMem >> 10)+"k"});
+        if (Build.VERSION.SDK_INT > 15) {
+            memory.add(new String[]{"Total memory", (info.totalMem >> 10) + "k"});
+        }
+        memory.add(new String[]{"Available memory", (info.availMem >> 10)+"k"});
         memory.add(new String[]{"Low memory situation", (info.lowMemory)?"Yes":"No"});
         memory.add(new String[]{"The threshold of availMem at which we consider memory to be low", Long.toString(info.threshold)});
+
 
         ArrayAdapter<String[]> arrayAdapter = new ArrayAdapter<String []>(this,
                 android.R.layout.simple_list_item_2,
