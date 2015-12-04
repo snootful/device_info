@@ -20,6 +20,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    public void aboutCPU(View view) {
+        Intent intent = new Intent(this, CPUActivity.class);
+        startActivity(intent);
+    }
+
     public void aboutMemory(View view) {
         Intent intent = new Intent(this, MemoryActivity.class);
         startActivity(intent);

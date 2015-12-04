@@ -29,8 +29,13 @@
             android:name=".PhoneActivity"
             android:label="@string/title_phone"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".MemoryActivity"
+        <activity
+            android:name=".MemoryActivity"
             android:label="@string/title_memory"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".CPUActivity"
+            android:label="@string/title_cpu"
             android:parentActivityName=".MainActivity" />
     </application>
 
