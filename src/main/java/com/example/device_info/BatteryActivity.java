@@ -24,49 +24,7 @@ public class BatteryActivity extends AppCompatActivity {
         IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         Intent batteryStatus =registerReceiver(null, filter);
 
-        String status;
-        int extraStatus = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
-        switch (extraStatus) {
-            case BatteryManager.BATTERY_STATUS_UNKNOWN:
-                status = "Unknown";
-                break;
-            case BatteryManager.BATTERY_STATUS_CHARGING:
-                status = "Charging";
-                break;
-            case BatteryManager.BATTERY_STATUS_DISCHARGING:
-                status = "Discharging";
-                break;
-            case BatteryManager.BATTERY_STATUS_NOT_CHARGING:
-                status = "Not Charging";
-                break;
-            case BatteryManager.BATTERY_STATUS_FULL:
-                status = "Full";
-                break;
-            default:
-                status = "Unknown";
-        }
-
-        String plugged = "";
-        int extraPlugged = batteryStatus.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
-        switch (extraPlugged) {
-            case BatteryManager.BATTERY_PLUGGED_AC:
-                plugged = "AC";
-                break;
-            case BatteryManager.BATTERY_PLUGGED_USB:
-                plugged = "USB";
-                break;
-            case BatteryManager.BATTERY_PLUGGED_WIRELESS:
-                plugged = "Wireless";
-                break;
-        }
-
-        String technology = batteryStatus.getStringExtra(BatteryManager.EXTRA_TECHNOLOGY);
-        int extraTemperature = batteryStatus.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0);
-        float temperature = ((float) extraTemperature) / 10;
-        int extraVoltage = batteryStatus.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0);
-        float voltage = ((float) extraVoltage) /1000;
-        int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
-        int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, 0);
+        final ArrayList<String[]> battery = new ArrayList<>();
 
         String health;
         int extraHealth = batteryStatus.getIntExtra(BatteryManager.EXTRA_HEALTH, -1);
@@ -96,15 +54,61 @@ public class BatteryActivity extends AppCompatActivity {
                 health = "Unknown";
 
         }
-
-        final ArrayList<String[]> battery = new ArrayList<>();
         battery.add(new String[]{"Health", health});
+
         battery.add(new String[]{"Total Battery Capacity", getBatteryCapacity()});
+
+        int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
+        int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, 0);
         battery.add(new String[]{"Capacity", level+"/"+scale});
+
+        String status;
+        int extraStatus = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+        switch (extraStatus) {
+            case BatteryManager.BATTERY_STATUS_UNKNOWN:
+                status = "Unknown";
+                break;
+            case BatteryManager.BATTERY_STATUS_CHARGING:
+                status = "Charging";
+                break;
+            case BatteryManager.BATTERY_STATUS_DISCHARGING:
+                status = "Discharging";
+                break;
+            case BatteryManager.BATTERY_STATUS_NOT_CHARGING:
+                status = "Not Charging";
+                break;
+            case BatteryManager.BATTERY_STATUS_FULL:
+                status = "Full";
+                break;
+            default:
+                status = "Unknown";
+        }
         battery.add(new String[]{"Status", status});
+
+        String plugged = "";
+        int extraPlugged = batteryStatus.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
+        switch (extraPlugged) {
+            case BatteryManager.BATTERY_PLUGGED_AC:
+                plugged = "AC";
+                break;
+            case BatteryManager.BATTERY_PLUGGED_USB:
+                plugged = "USB";
+                break;
+            case BatteryManager.BATTERY_PLUGGED_WIRELESS:
+                plugged = "Wireless";
+                break;
+        }
         battery.add(new String[]{"Plugged", plugged});
+
+        int extraTemperature = batteryStatus.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0);
+        float temperature = ((float) extraTemperature) / 10;
         battery.add(new String[]{"Temperature", temperature+"°C"});
+
+        int extraVoltage = batteryStatus.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0);
+        float voltage = ((float) extraVoltage) /1000;
         battery.add(new String[]{"Voltage", voltage+"Volts"});
+
+        String technology = batteryStatus.getStringExtra(BatteryManager.EXTRA_TECHNOLOGY);
         battery.add(new String[]{"Technology", technology});
 
         ArrayAdapter<String[]> arrayAdapter = new ArrayAdapter<String []>(this,
