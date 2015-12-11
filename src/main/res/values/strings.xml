@@ -4,6 +4,7 @@
     <string name="title_cpu">CPU</string>
     <string name="title_memory">Memory</string>
     <string name="title_battery">Battery</string>
+    <string name="title_wifi">Wifi</string>
     <string name="title_phone">Phone</string>
     <string name="title_system">System</string>
 </resources>

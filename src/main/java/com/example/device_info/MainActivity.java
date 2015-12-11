@@ -35,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void aboutWifi(View view) {
+        Intent intent = new Intent(this, WifiActivity.class);
+        startActivity(intent);
+    }
+
     public void aboutPhone(View view) {
         if (Build.VERSION.SDK_INT >= 23) {
             int checkReadPhonePermission = ActivityCompat.checkSelfPermission(this,
